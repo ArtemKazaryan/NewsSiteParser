@@ -1,0 +1,58 @@
+{% extends 'parsersystem/base.html' %}
+
+{% block content %}
+
+<h1>NewsSiteParser</h1>
+<form style="padding-left: 450px; padding-right: 450px;" method="post" class="bg" >
+    {%  csrf_token %}
+    {{ form.as_p }}
+    <div class="center">
+        <label for="sitename">Введите краткое название ресурса(это <b>nur.kz</b> или <b>scientificrussia.ru</b>),
+            нажмите кнопку <b>"Парсить новости"</b> и подождите <b>10-15 секунд для 30 новостей</b> (со страницы nur.kz ~180 новостей в минуту) и
+            <b>50 секунд для 46-ти новостей с двух страниц (230 новостей за 4мин 15сек с 10-ти страниц)</b> (со страниц scientificrussia.ru ~55 новостей в минуту)</b> прежде,
+                чем получите данные ниже на странице.
+            Поле content таблицы items ограничено 1000 символами в ORM-модели.
+            Таблицы <b>parsersystem_resources</b> и <b>parsersystem_items</b>
+            хранятся в файле <b>db.sqlite3</b>.
+            В админку можно зайти по ссылке <b>http://127.0.0.1:8000/admin</b> . Логин: <b>admin</b> и пароль: <b>Qq12345!</b> .
+            Там можно посмотреть количество и содержимое таблиц до и после парсинга.</label>
+        <input type="text" id="sitename" name="parsesite">
+        <button class="btn">Парсить новости</button>
+    </div>
+</form>
+
+<form style="padding-left: 150px; padding-right: 150px;" class="bg" >
+{% if resourceset %}
+    <h1>Таблица resources содержит:</h1>
+        <p><b>resource_id:</b> {{ resourceset.resource_id }}</p>
+        <p><b>resource_name:</b> {{ resourceset.resource_name }}</p>
+        <p><b>resource_url:</b> {{ resourceset.resource_url }}</p>
+        <p><b>top_tag:</b> {{ resourceset.top_tag }}</p>
+        <p><b>bottom_tag:</b> {{ resourceset.bottom_tag }}</p>
+        <p><b>title_cut:</b> {{ resourceset.title_cut }}</p>
+        <p><b>date_cut:</b> {{ resourceset.date_cut }}</p>
+{% endif %}
+<h1>{{ endparse }}</h1>
+</form>
+
+<form style="padding-left: 150px; padding-right: 150px;" class="bg" >
+{% if itemsset %}
+    <h1>Таблица items содержит:</h1>
+    {% for item in itemsset %}
+        {{ multydash }}
+        <p><b>id:</b> {{ item.id }}</p>
+        <p><b>res_id:</b> {{ item.res_id }}</p>
+        <p><b>link:</b> {{ item.link }}</p>
+        <p><b>title:</b> {{ item.title }}</p>
+        <p><b>content:</b> {{ item.content }}</p>
+        <p><b>nd_date:</b> {{ item.nd_date }}</p>
+        <p><b>s_date:</b> {{ item.s_date }}</p>
+        <p><b>not_date:</b> {{ item.not_date }}</p>
+        {{ multydash }}
+    {% endfor %}
+{% endif %}
+<h1>{{ endparse }}</h1>
+</form>
+
+{% endblock %}
+
