@@ -1,23 +1,5 @@
 from .models import Resource, Items
 
-# nur.kz
-# resource_name = 'nur.kz'
-# resource_url = 'https://www., /latest, 1'
-# top_tag = 'div, block-infinite js-infinite, div, formatted-body__content--wrapper'
-# bottom_tag = 'a, article-preview-category__content, h2, formatted-body__header2, p, align-left formatted-body__paragraph' \
-#              ' p, align-left formatted-body__paragraph'
-# title_cut = 'h1, main-headline js-main-headline'
-# date_cut = 'time, datetime datetime--publication, %Y-%m-%dT%H:%M:%S%z'
-
-
-# scientificrussia.ru
-# resource_name = 'scientificrussia.ru'
-# resource_url = 'https://www., /news, 2'
-# top_tag = 'div, image, div, article-text, , , li, page-item prev'
-# bottom_tag = 'a, , h2, , p, , a, page-link'
-# title_cut = 'h1, '
-# date_cut = 'time, , %Y-%m-%d %H:%M'
-
 
 # Импортируем функции рендеринга, перенапрвления и получения объекта модели из пакета функций быстрого доступа
 from django.shortcuts import render, redirect, get_object_or_404
