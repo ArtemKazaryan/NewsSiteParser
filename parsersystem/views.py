@@ -54,9 +54,9 @@ def getparsing(request):
                 title = news[i + 1]
                 content = news[i + 2]
                 nd_date = news[i + 4]
+                s_date = int(current_datetime.timestamp())  # в формате UnixTime
                 not_date = news[i + 5]
-                s_date = int(current_datetime.timestamp()) # в формате UnixTime
-
+                
                 # Получение объекта с добавленные в ORM-модель Items данными
                 news_item_obj = Items.objects.create(res_id=res_id, link=link, title=title, content=content,
                                                      nd_date=nd_date, s_date=s_date, not_date=not_date)
