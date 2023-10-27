@@ -49,7 +49,7 @@ def parse_news(resource_name, resource_url, top_tag, bottom_tag, title_cut, date
             soup = BeautifulSoup(response.content, 'html.parser')
             div_tags = soup.find_all(top_tag_args[0], class_=top_tag_args[1])
 
-            # Получение ссылок первого уровня
+            # Получение ссылок текущего уровня
             a_hrefs = []
             for div_tag in div_tags:
                 a_tags = div_tag.find_all(bottom_tag_args[0], class_=bottom_tag_args[1])

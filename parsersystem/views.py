@@ -38,7 +38,7 @@ def getparsing(request):
             resourceset = Resource.objects.all()
             resourcesetlst = resourceset.values()
 
-            # Повторное сохранения значения id ресурса в переменной
+            # Повторное сохранение значения id ресурса в переменной
             for item in resourcesetlst:
                 resource_id = item['resource_id']
                 break
@@ -56,7 +56,7 @@ def getparsing(request):
                 nd_date = news[i + 4]
                 s_date = int(current_datetime.timestamp())  # в формате UnixTime
                 not_date = news[i + 5]
-                
+
                 # Получение объекта с добавленные в ORM-модель Items данными
                 news_item_obj = Items.objects.create(res_id=res_id, link=link, title=title, content=content,
                                                      nd_date=nd_date, s_date=s_date, not_date=not_date)
