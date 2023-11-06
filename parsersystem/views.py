@@ -25,13 +25,12 @@ def getparsing(request):
         if sitename == resource_name:
             for item in resourcesetlst:
                 resource_name = item['resource_name']
-                resource_id = item['resource_id']
+                resource_id = resource_id
                 resource_url = item['resource_url']
                 top_tag = item['top_tag']
                 bottom_tag = item['bottom_tag']
                 title_cut = item['title_cut']
                 date_cut = item['date_cut']
-                break
 
             # Активация функции parse_news (запуск парсера)
             news = parse_news(resource_name, resource_url, top_tag, bottom_tag, title_cut, date_cut)
