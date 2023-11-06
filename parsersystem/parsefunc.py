@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import datetime
 import time
 
-def parse_news(resource_name, resource_url, top_tag, bottom_tag, title_cut, date_cut):
+def parse_news(resource_id, resource_name, resource_url, top_tag, bottom_tag, title_cut, date_cut):
     # Распаковка структур(списков) из таблицы resources:
     
     # Список стуктуры параметра resource_url
@@ -85,10 +85,11 @@ def parse_news(resource_name, resource_url, top_tag, bottom_tag, title_cut, date
                     not_date = datetime_obj.strftime('%Y-%m-%d')
 
                     # Формируем выходной список функции parse_news()
+                    news.append(resource_id)
                     news.append(a_hrefs[i])
                     news.append(title)
                     news.append(content)
-                    news.append(news_datetime_str)
+                    # news.append(news_datetime_str)
                     news.append(nd_date)
                     news.append(not_date)
 

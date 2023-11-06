@@ -25,7 +25,7 @@ def getparsing(request):
         if sitename == resource_name:
             for item in resourcesetlst:
                 resource_name = item['resource_name']
-                resource_id = resource_id
+                resource_id = item['resource_id']
                 resource_url = item['resource_url']
                 top_tag = item['top_tag']
                 bottom_tag = item['bottom_tag']
@@ -33,7 +33,7 @@ def getparsing(request):
                 date_cut = item['date_cut']
 
             # Активация функции parse_news (запуск парсера)
-            news = parse_news(resource_name, resource_url, top_tag, bottom_tag, title_cut, date_cut)
+            news = parse_news(resource_id, resource_name, resource_url, top_tag, bottom_tag, title_cut, date_cut)
             resourceset = Resource.objects.all()
             resourcesetlst = resourceset.values()
 
@@ -48,13 +48,14 @@ def getparsing(request):
 
             # Формирование переменных (для наглядности) для записи в таблицу items БД
             for i in range(0, len(news), 6):
-                res_id = resource_id
-                link = news[i]
-                title = news[i + 1]
-                content = news[i + 2]
+                res_id = news[i]
+                link = news[i + 1]
+                title = news[i + 2]
+                content = news[i + 3]
                 nd_date = news[i + 4]
                 s_date = int(current_datetime.timestamp())  # в формате UnixTime
                 not_date = news[i + 5]
+
 
                 # Получение объекта с добавленные в ORM-модель Items данными
                 news_item_obj = Items.objects.create(res_id=res_id, link=link, title=title, content=content,
